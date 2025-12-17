@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sierra Leone Football Association</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            color: #222;
+            line-height: 1.5;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            background: #0b6623; /* darker green */
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-area img {
+            width: 45px;
+            height: 45px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .logo-area h2 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            transition: color 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffd700; /* gold accent on hover */
+        }
+
+        /* ensure content is not hidden under the fixed header */
+        main {
+            flex: 1 0 auto;
+            padding-top: 10px; /* header height + some breathing room */
+        }
+
+        /* HERO (simple placeholder) */
+        .hero {
+            height: 60vh;
+            background: url('https://images.unsplash.com/photo-1505356826900-1f8d0f6db90a?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            padding: 20px;
+            background: rgba(0,0,0,0.25);
+            border-radius: 6px;
+        }
+
+       /* FOOTER */
+        footer {
+            background:#1b75bc; /* Sierra Leone blue */
+            color: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+            flex-shrink: 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto 20px;
+            align-items: start;
+        }
+
+        .footer-brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .footer-brand img {
+            width: 56px;
+            height: 56px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        .footer-brand h3 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .footer-col h4 {
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: white;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 4px;
+            width: fit-content;
+        }
+
+        .footer-col p,
+        .footer-col a,
+        .footer-col li {
+            font-size: 14px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: white;
+            opacity: 0.95;
+        }
+
+        .footer-links a:hover {
+            color: #0b6623; /* Sierra Leone green */
+            font-weight: bold;
+        }
+
+        .socials {
+            display: flex;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.2);
+            text-decoration: none;
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.4);
+            padding-top: 14px;
+            text-align: center;
+            color: white;
+            font-size: 13px;
+        }
+
+        /* small screens adjustments */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 28px; padding: 12px; }
+            header { padding: 12px 18px; }
+            nav ul { gap: 14px; }
+            main { padding-top: 84px; }
+        }
+
+        .players-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .players-section h2 {
+            margin-bottom: 20px;
+            font-size: 26px;
+            font-weight: bold;
+            color: #0b6623;
+        }
+
+        /* FILTER BAR */
+        .filter-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .filter-bar input,
+        .filter-bar select {
+            padding: 10px;
+            border: 1px solid #aaa;
+            border-radius: 6px;
+            font-size: 14px;
+            flex: 1;
+        }
+
+        /* PLAYERS GRID */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .player-card {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ccc;
+            transition: transform 0.3s;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .player-card img {
+            width: 100%;
+            height: 75%;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .player-card h3 {
+            margin: 10px 0 5px;
+            color: #1b75bc;
+        }
+
+        .player-card p {
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <img src="slfa-new-logo-3.png" alt="SLFA logo" />
+        <h2>SLFA</h2>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.htm">HOME</a></li>
+            <li><a href="players.htm">PLAYERS</a></li>
+            <li><a href="matches.htm">MATCHES</a></li>
+            <li><a href="services.htm">SERVICES</a></li>
+            <li><a href="news.htm">NEWS</a></li>
+            <li><a href="contact.htm">CONTACT</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="players-section">
+        <br>
+        <br>
+    <h2>Players</h2>
+
+    <!-- FILTER BAR -->
+    <div class="filter-bar">
+        <input type="text" id="searchInput" placeholder="Search player name...">
+
+        <select id="positionFilter">
+            <option value="">All Positions</option>
+            <option value="Forward">Forward</option>
+            <option value="Midfielder">Midfielder</option>
+            <option value="Defender">Defender</option>
+            <option value="Goalkeeper">Goalkeeper</option>
+        </select>
+
+        <select id="clubFilter">
+            <option value="">All Clubs</option>
+            <option value="Bo Rangers FC">Bo Rangers FC</option>
+            <option value="East End Lions">East End Lions</option>
+            <option value="FC Kallon">FC Kallon</option>
+            <option value="Wilberforce Strikers">Wilberforce Strikers</option>
+            <option value="OGC Nice">OGC Nice</option>
+            <option value="Hartford FC">Hartford FC</option>
+            <option value="Bhantal FC">Bhantal FC</option>
+            <option value="El Gouna">El Gouna</option>
+            <option value="Midtjylland FC">Midtjylland FC</option>
+            <option value="Al Shahaniya SC">Al Shahaniya SC</option>
+            <option value="Zabbar St. Patrick FC">Zabbar St. Patrick FC</option>
+            <option value="Zhetysu FC">Zhetysu FC</option>
+            <option value="Bo Rangers FC">Bo Rangers FC</option>
+            <option value="Borak Cacak/Alaska">Borak Cacak/Alaska</option>
+            <option value="FC Cincinnati">FC Cincinnati</option>
+            <option value="Minnesota United FC">Minnesota United FC</option>
+            <option value="Politehnica UTM Chisinau">Politehnica UTM Chisinau</option>
+            <option value="Bai Bureh Warriors">Bai Bureh Warriors</option>
+        </select>
+    </div>
+
+    <!-- PLAYERS GRID -->
+   <div class="players-grid" id="playersGrid">
+
+    <!-- Goalkeepers -->
+    <div class="player-card" data-name="Alhaji Sesay" data-position="Goalkeeper" data-club="Bhantal FC">
+        <img src="G1.jpg" alt="Alhaji Sesay">
+        <h3>Alhaji Sesay</h3>
+        <p>Position: Goalkeeper</p>
+        <p>Club: Bhantal FC</p>
+    </div>
+
+    <div class="player-card" data-name="Francis Koroma" data-position="Goalkeeper" data-club="Wilberforce Strikers">
+        <img src="G2.jpg" alt="Francis Koroma">
+        <h3>Francis Koroma</h3>
+        <p>Position: Goalkeeper</p>
+        <p>Club: Wilberforce Strikers</p>
+    </div>
+
+    <div class="player-card" data-name="Donald Kamara" data-position="Goalkeeper" data-club="FC Kallon">
+        <img src="players/donald_kamara.jpg" alt="Donald Kamara">
+        <h3>Donald Kamara</h3>
+        <p>Position: Goalkeeper</p>
+        <p>Club: FC Kallon</p>
+    </div>
+
+    <!-- Defenders -->
+    <div class="player-card" data-name="Abdulai Juma Bah" data-position="Defender" data-club="OGC Nice">
+        <img src="565373169_122273994278202273_3353501196269346182_n.jpg" alt="Abdulai Juma Bah">
+        <h3>Abdulai Juma Bah</h3>
+        <p>Position: Defender</p>
+        <p>Club: OGC Nice</p>
+    </div>
+
+    <div class="player-card" data-name="Emmanuel Samadia" data-position="Defender" data-club="Hartford FC">
+        <img src="559779405_122273993858202273_1073246994344860738_n.jpg" alt="Emmanuel Samadia">
+        <h3>Emmanuel Samadia</h3>
+        <p>Position: Defender</p>
+        <p>Club: Hartford FC</p>
+    </div>
+
+    <div class="player-card" data-name="Alpha Turay" data-position="Defender" data-club="El Gouna">
+        <img src="Alpha Turay.webp" alt="Alpha Turay">
+        <h3>Alpha Turay</h3>
+        <p>Position: Defender</p>
+        <p>Club: El Gouna</p>
+    </div>
+
+    <div class="player-card" data-name="Nathaniel Jalloh" data-position="Defender" data-club="FC Kallon">
+        <img src="559238440_122273992754202273_4144490896462597983_n.jpg" alt="Nathaniel Jalloh">
+        <h3>Nathaniel Jalloh</h3>
+        <p>Position: Defender</p>
+        <p>Club: FC Kallon</p>
+    </div>
+
+    <div class="player-card" data-name="Sallieu Tarawallie" data-position="Defender" data-club="FC Kallon">
+        <img src="559367989_122273993750202273_680527201366062021_n.jpg" alt="Sallieu Tarawallie">
+        <h3>Sallieu Tarawallie</h3>
+        <p>Position: Defender</p>
+        <p>Club: FC Kallon</p>
+    </div>
+
+    <div class="player-card" data-name="Citta Bah" data-position="Defender" data-club="Midtjylland FC">
+        <img src="561166290_122273993330202273_1693349864801458603_n.jpg" alt="Citta Bah">
+        <h3>Citta Bah</h3>
+        <p>Position: Defender</p>
+        <p>Club: Midtjylland FC</p>
+    </div>
+
+    <div class="player-card" data-name="Mohamed Kamara" data-position="Defender" data-club="Bhantal FC">
+        <img src="559779405_122273993858202273_1073246994344860738_n.jpg" alt="Mohamed Kamara">
+        <h3>Mohamed Kamara</h3>
+        <p>Position: Defender</p>
+        <p>Club: Bhantal FC</p>
+    </div>
+
+    <!-- Midfielders -->
+    <div class="player-card" data-name="Alhassan Koroma" data-position="Midfielder" data-club="Al Shahaniya SC">
+        <img src="565373169_122273994278202273_3353501196269346182_n.jpg" alt="Alhassan Koroma">
+        <h3>Alhassan Koroma</h3>
+        <p>Position: Midfielder</p>
+        <p>Club: Al Shahaniya SC</p>
+    </div>
+
+    <div class="player-card" data-name="Abu Dumbuya" data-position="Midfielder" data-club="Zabbar St. Patrick FC">
+        <img src="{FBEA8C86-89FA-4D57-8DEB-EE372CB7D04C}.png" alt="Abu Dumbuya">
+        <h3>Abu Dumbuya</h3>
+        <p>Position: Midfielder</p>
+        <p>Club: Zabbar St. Patrick FC</p>
+    </div>
+
+    <div class="player-card" data-name="Saidu Fofanah" data-position="Midfielder" data-club="Zhetysu FC">
+        <img src="FOFANAH.jpg" alt="Saidu Fofanah">
+        <h3>Saidu Fofanah</h3>
+        <p>Position: Midfielder</p>
+        <p>Club: Zhetysu FC</p>
+    </div>
+
+    <div class="player-card" data-name="Mohamed Kabba" data-position="Midfielder" data-club="Bo Rangers FC">
+        <img src="561166290_122273993330202273_1693349864801458603_n.jpg" alt="Mohamed Kabba">
+        <h3>Mohamed Kabba</h3>
+        <p>Position: Midfielder</p>
+        <p>Club: Bo Rangers FC</p>
+    </div>
+
+    <div class="player-card" data-name="Mohamed Kabia" data-position="Midfielder" data-club="Borak Cacak/Alaska">
+        <img src="{0A45B0D6-210D-43BB-8CE0-122B5B3CFF48}.png" alt="Mohamed Kabia">
+        <h3>Mohamed Kabia</h3>
+        <p>Position: Midfielder</p>
+        <p>Club: Borak Cacak/Alaska</p>
+    </div>
+
+    <div class="player-card" data-name="John B. Sesay" data-position="Midfielder" data-club="Bhantal FC">
+        <img src="john.jpg" alt="John B. Sesay">
+        <h3>John B. Sesay</h3>
+        <p>Position: Midfielder</p>
+        <p>Club: Bhantal FC</p>
+    </div>
+
+    <!-- Forwards -->
+    <div class="player-card" data-name="Kei Kamara" data-position="Forward" data-club="FC Cincinnati">
+        <img src="kai.jpg" alt="Kei Kamara">
+        <h3>Kei Kamara</h3>
+        <p>Position: Forward</p>
+        <p>Club: FC Cincinnati</p>
+    </div>
+
+    <div class="player-card" data-name="Mohamed Buya Turay" data-position="Forward" data-club="Zhetysu FC">
+        <img src="562371446_122273992394202273_7747283713239190508_n.jpg" alt="Mohamed Buya Turay">
+        <h3>Mohamed Buya Turay</h3>
+        <p>Position: Forward</p>
+        <p>Club: Zhetysu FC</p>
+    </div>
+
+    <div class="player-card" data-name="Augustus Kargbo" data-position="Forward" data-club="Blackburn Rovers">
+      
+        <img src="558872657_122273993552202273_3244905751372676256_n.jpg" alt="Augustus Kargbo">
+        <h3>Augustus Kargbo</h3>
+        <p>Position: Forward</p>
+        <p>Club: Blackburn Rovers</p>
+    </div>
+
+    <div class="player-card" data-name="Momoh Kamara" data-position="Forward" data-club="Minnesota United FC">
+        <img src="560540730_122273991086202273_9091198818465045888_n.jpg" alt="Momoh Kamara">
+        <h3>Momoh Kamara</h3>
+        <p>Position: Forward</p>
+        <p>Club: Minnesota United FC</p>
+    </div>
+
+    <div class="player-card" data-name="Samuel Gandi" data-position="Forward" data-club="Politehnica UTM Chisinau">
+        <img src="{53CD3C6D-D261-426E-9824-D958FE0FDFDD}.png" alt="Samuel Gandi">
+        <h3>Samuel Gandi</h3>
+        <p>Position: Forward</p>
+        <p>Club: Politehnica UTM Chisinau</p>
+    </div>
+
+    <div class="player-card" data-name="Mohamed Kamara" data-position="Forward" data-club="Bai Bureh Warriors">
+        <img src="561615570_122273994104202273_265114875904156952_n.jpg" alt="Mohamed Kamara">
+        <h3>Mohamed Kamara</h3>
+        <p>Position: Forward</p>
+        <p>Club: Bai Bureh Warriors</p>
+    </div>
+
+    <div class="player-card" data-name="Momoh L. Dumbuya" data-position="Forward" data-club="FC Kallon">
+        <img src="561166290_122273993330202273_1693349864801458603_n.jpg" alt="Momoh L. Dumbuya">
+        <h3>Momoh L. Dumbuya</h3>
+        <p>Position: Forward</p>
+        <p>Club: FC Kallon</p>
+    </div>
+
+    <div class="player-card" data-name="Alie Conteh" data-position="Forward" data-club="East End Lions">
+        <img src="Alpha Turay.webp" alt="Alie Conteh">
+        <h3>Alie Conteh</h3>
+        <p>Position: Forward</p>
+        <p>Club: East End Lions</p>
+    </div>
+
+    <div class="player-card" data-name="Mohamed Bangura" data-position="Forward" data-club="Bhantal FC">
+        <img src="mohamed bangura.jpg" alt="Mohamed Bangura">
+        <h3>Mohamed Bangura</h3>
+        <p>Position: Forward</p>
+        <p>Club: Bhantal FC</p>
+    </div>
+    </div>
+</section>
+
+  
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        
+        <div class="footer-col">
+            <div class="footer-brand">
+                <img src="slfa-new-logo-3.png" alt="SLFA logo" />
+                <div>
+                    <h3>Sierra Leone FA</h3>
+                    <p style="margin-top:6px; font-size:13px; max-width:240px;">
+                        Promoting and supporting football across Sierra Leone — development, leagues, and national teams.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="index.htm">Home</a></li>
+                <li><a href="players.htm">Players</a></li>
+                <li><a href="services.htm">Services</a></li>
+                <li><a href="news.htm">News</a></li>
+                <li><a href="contact.htm">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>National Stadium, Freetown</p>
+            <p>Phone: +232 76 123 456</p>
+            <p>Email: <a href="mailto:info@slfa.org">info@slfa.org</a></p>
+
+            <div style="margin-top:8px;">
+                <h4 style="margin-bottom:8px;">Follow Us</h4>
+                <div class="socials">
+                    
+                    <a href="#" aria-label="Facebook">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.1 5.66 21.19 10.44 21.95v-6.99H7.9v-2.87h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.44h-1.25c-1.24 0-1.62.77-1.62 1.56v1.88h2.77l-.44 2.87h-2.33v6.99C18.34 21.19 22 17.1 22 12.07z"/>
+                        </svg>
+                    </a>
+
+                    <a href="#" aria-label="Twitter">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.46 6c-.77.35-1.6.58-2.46.69.89-.53 1.57-1.37 1.89-2.37-.84.5-1.77.86-2.76 1.06C18.14 4.5 17 4 15.76 4c-2.17 0-3.93 1.76-3.93 3.93 0 .31.03.62.1.91C8.41 8.7 5.28 6.95 3.1 4.48c-.34.58-.54 1.26-.54 1.99 0 1.38.7 2.59 1.77 3.3-.65-.02-1.26-.2-1.79-.5v.05c0 1.92 1.37 3.52 3.18 3.88-.33.09-.68.14-1.04.14-.25 0-.48-.02-.71-.07.49 1.53 1.92 2.64 3.61 2.67C7.2 17.6 5.05 18.4 2.7 18.04c2.01 1.29 4.4 2.05 6.97 2.05 8.36 0 12.93-6.92 12.93-12.93 0-.2 0-.39-.02-.58A9.2 9.2 0 0 0 22.46 6z"/>
+                        </svg>
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm5 5.9A4.1 4.1 0 1 1 7.9 12 4.1 4.1 0 0 1 12 7.9zm6.5-.4a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1zM12 9.5A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © <span id="year"></span> Sierra Leone Football Association. All rights reserved.
+    </div>
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<script>
+    // set the copyright year dynamically
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const positionFilter = document.getElementById('positionFilter');
+    const clubFilter = document.getElementById('clubFilter');
+    const players = document.querySelectorAll('.player-card');
+
+    function filterPlayers() {
+        const text = searchInput.value.toLowerCase();
+        const position = positionFilter.value;
+        const club = clubFilter.value;
+
+        players.forEach(player => {
+            const name = player.dataset.name.toLowerCase();
+            const pos = player.dataset.position;
+            const clubName = player.dataset.club;
+
+            const matchName = name.includes(text);
+            const matchPosition = position === "" || position === pos;
+            const matchClub = club === "" || club === clubName;
+
+            if (matchName && matchPosition && matchClub) {
+                player.style.display = "block";
+            } else {
+                player.style.display = "none";
+            }
+        });
+    }
+
+    searchInput.addEventListener('input', filterPlayers);
+    positionFilter.addEventListener('change', filterPlayers);
+    clubFilter.addEventListener('change', filterPlayers);
+</script>
+
+</html>

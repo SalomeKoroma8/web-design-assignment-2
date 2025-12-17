@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sierra Leone Football Association | Matches</title>
+
+    <style>
+        :root {
+            --slfa-green: #0b6623;
+            --slfa-blue: #1b75bc;
+            --slfa-white: #f5f5f5;
+            --slfa-gold: #ffd700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: var(--slfa-white);
+            color: #222;
+            line-height: 1.5;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* === ORIGINAL HEADER (Copied Exactly) === */
+        header {
+            width: 100%;
+            background: var(--slfa-green);
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-area img {
+            width: 45px;
+            height: 45px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .logo-area h2 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            transition: color 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--slfa-gold);
+        }
+
+        /* CONTENT AREA */
+        main {
+            flex: 1 0 auto;
+            padding-top: 90px;
+            padding-left: 40px;
+            padding-right: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .page-title h1 {
+            font-size: 34px;
+            color: var(--slfa-blue);
+        }
+
+        /* TABLES */
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            color: var(--slfa-green);
+            margin-bottom: 12px;
+            border-left: 5px solid var(--slfa-blue);
+            padding-left: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+        }
+
+        table thead {
+            background: var(--slfa-blue);
+            color: white;
+        }
+
+        th, td {
+            padding: 14px;
+            font-size: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #eef7ff;
+        }
+
+        .score {
+            font-weight: bold;
+            color: var(--slfa-green);
+        }
+
+        /* === ORIGINAL FOOTER (Copied Exactly) === */
+        footer {
+            background:var(--slfa-blue);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+            flex-shrink: 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto 20px;
+            align-items: start;
+        }
+
+        .footer-brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .footer-brand img {
+            width: 56px;
+            height: 56px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--slfa-green);
+            font-weight: bold;
+        }
+
+        .socials {
+            display: flex;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.4);
+            padding-top: 14px;
+            text-align: center;
+            color: white;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 12px 18px; }
+            nav ul { gap: 14px; }
+            th, td { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER (Exact Copy) -->
+<header>
+    <div class="logo-area">
+        <img src="slfa-new-logo-3.png" alt="SLFA logo" />
+        <h2>SLFA</h2>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.htm">HOME</a></li>
+            <li><a href="players.htm">PLAYERS</a></li>
+            <li><a href="matches.htm">MATCHES</a></li>
+            <li><a href="services.htm">SERVICES</a></li>
+            <li><a href="news.htm">NEWS</a></li>
+            <li><a href="contact.htm">CONTACT</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <div class="page-title">
+        <h1>Match Fixtures & Results</h1>
+    </div>
+
+    <!-- UPCOMING FIXTURES -->
+    <section class="section">
+        <h2>Upcoming Fixtures</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Teams</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th>Competition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Leone Stars vs Liberia</td>
+                    <td>Dec 10, 2025</td>
+                    <td>National Stadium, Freetown</td>
+                    <td>AFCON Qualifiers</td>
+                </tr>
+                <tr>
+                    <td>East End Lions vs FC Kallon</td>
+                    <td>Dec 14, 2025</td>
+                    <td>Siaka Stevens Stadium</td>
+                    <td>Premier League</td>
+                </tr>
+                <tr>
+                    <td>Bo Rangers vs Ports Authority</td>
+                    <td>Dec 18, 2025</td>
+                    <td>Southern Arena</td>
+                    <td>Premier League</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- RECENT RESULTS -->
+    <section class="section">
+        <h2>Recent Results</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Teams</th>
+                    <th>Final Score</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Leone Stars vs Nigeria</td>
+                    <td class="score">2 - 1</td>
+                    <td>Nov 25, 2025</td>
+                    <td>National Stadium</td>
+                </tr>
+                <tr>
+                    <td>FC Kallon vs Bo Rangers</td>
+                    <td class="score">0 - 0</td>
+                    <td>Nov 22, 2025</td>
+                    <td>Wusum Stadium</td>
+                </tr>
+                <tr>
+                    <td>East End Lions vs Central Parade</td>
+                    <td class="score">1 - 3</td>
+                    <td>Nov 18, 2025</td>
+                    <td>Siaka Stevens Stadium</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</main>
+
+<!-- FOOTER (Exact Copy) -->
+<footer>
+    <div class="footer-grid">
+        
+        <div class="footer-col">
+            <div class="footer-brand">
+                <img src="slfa-new-logo-3.png" alt="SLFA logo" />
+                <div>
+                    <h3>Sierra Leone FA</h3>
+                    <p style="margin-top:6px; font-size:13px; max-width:240px;">
+                        Promoting and supporting football across Sierra Leone — development, leagues, and national teams.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="index.htm">Home</a></li>
+                <li><a href="players.htm">Players</a></li>
+                <li><a href="services.htm">Services</a></li>
+                <li><a href="news.htm">News</a></li>
+                <li><a href="contact.htm">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>National Stadium, Freetown</p>
+            <p>Phone: +232 76 123 456</p>
+            <p>Email: <a href="mailto:info@slfa.org">info@slfa.org</a></p>
+
+            <div style="margin-top:8px;">
+                <h4 style="margin-bottom:8px;">Follow Us</h4>
+                <div class="socials">
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="Twitter">TW</a>
+                    <a href="#" aria-label="Instagram">IG</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © <span id="year"></span> Sierra Leone Football Association. All rights reserved.
+    </div>
+</footer>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

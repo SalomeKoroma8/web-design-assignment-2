@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>`
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sierra Leone Football Association | Home</title>
+    <style>
+        :root {
+            --slfa-green: #0b6623;
+            --slfa-blue: #1b75bc;
+            --slfa-white: #f5f5f5;
+            --slfa-gold: #ffd700;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: var(--slfa-white);
+            color: #222;
+            line-height: 1.5;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        /* HEADER */
+        header {
+            width: 100%;
+            background: var(--slfa-green); /* darker green */
+            padding: 15px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-area img {
+            width: 45px;
+            height: 45px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        .logo-area h2 {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            color: white;
+            transition: color 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--slfa-gold); /* gold accent on hover */
+        }
+
+        /* ensure content is not hidden under the fixed header */
+        main {
+            flex: 1 0 auto;
+            padding-top: 75px; /* Adjusted padding to clear fixed header */
+        }
+
+        /* HERO (simple placeholder) */
+        .hero {
+            height: 60vh;
+            /* Placeholder image. Should be replaced with a Sierra Leone football image */
+            background: url('https://images.unsplash.com/photo-1505356826900-1f8d0f6db90a?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.6);
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        /* MAIN LAYOUT AREA */
+        .layout-wrapper {
+            margin-top: 50px;
+            padding: 0 40px; /* Removed vertical padding, added horizontal */
+            max-width: 1200px; /* Constrain content width */
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        /* LEFT - AGENCY INTRODUCTION */
+        .agency-card {
+            width: 65%; /* Increased width slightly */
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--slfa-green);
+        }
+
+        .agency-card h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--slfa-blue);
+        }
+
+        .agency-card p {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        /* RIGHT - NEWS FEED CONTAINER */
+        .news-feed { /* Changed news-card to news-feed for consistency */
+            width: 35%;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+
+        .news-feed h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: var(--slfa-green);
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .news-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: #fff;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
+
+        .news-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+        }
+
+        .news-text {
+            width: 70%;
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .news-thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            flex-shrink: 0;
+        }
+
+        .news-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        /* HIGHLIGHTS SECTION */
+        .highlights {
+            margin-top: 60px;
+            padding: 0 40px;
+            text-align: center;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .highlights h2 {
+            font-size: 28px;
+            color: var(--slfa-blue);
+            margin-bottom: 20px;
+        }
+
+        .highlight-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: auto;
+            padding: 20px 0;
+        }
+
+        .highlight-item {
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .highlight-item video {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        /* FOOTER */
+        footer {
+            background:var(--slfa-blue); /* Sierra Leone blue */
+            color: white;
+            padding: 40px 20px;
+            margin-top: 40px;
+            flex-shrink: 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto 20px;
+            align-items: start;
+        }
+
+        .footer-brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .footer-brand img {
+            width: 56px;
+            height: 56px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+
+        .footer-brand h3 {
+            color: #fff;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .footer-col h4 {
+            font-size: 15px;
+            margin-bottom: 10px;
+            color: white;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 4px;
+            width: fit-content;
+        }
+
+        .footer-col p,
+        .footer-col a,
+        .footer-col li {
+            font-size: 14px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: white;
+            opacity: 0.95;
+        }
+
+        .footer-links a:hover {
+            color: var(--slfa-green); /* Sierra Leone green */
+            font-weight: bold;
+        }
+
+        .socials {
+            display: flex;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.2);
+            text-decoration: none;
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.4);
+            padding-top: 14px;
+            text-align: center;
+            color: white;
+            font-size: 13px;
+        }
+
+        /* small screens adjustments */
+        @media (max-width: 900px) {
+            .layout-wrapper {
+                flex-direction: column;
+                gap: 30px;
+                padding: 0 20px;
+            }
+            .agency-card, .news-feed {
+                width: 100%;
+            }
+            .highlights {
+                padding: 0 20px;
+            }
+        }
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 28px; padding: 12px; }
+            header { padding: 12px 18px; }
+            nav ul { gap: 14px; }
+            main { padding-top: 70px; }
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <img src="slfa-new-logo-3.png" alt="SLFA logo" />
+        <h2>SLFA</h2>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="index.htm">HOME</a></li>
+            <li><a href="players.htm">PLAYERS</a></li>
+            <li><a href="matches.htm">MATCHES</a></li>
+            <li><a href="services.htm">SERVICES</a></li>
+            <li><a href="news.htm">NEWS</a></li>
+            <li><a href="contact.htm">CONTACT</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+ 
+
+    <div class="layout-wrapper">
+        <div class="agency-card">
+            <h2>AGENCY INTRODUCTION</h2>
+            <p>
+                The Sierra Leone Football Association (SLFA) is dedicated to developing,
+                promoting, and elevating football across the nation. Our vision is to
+                empower both youth and professional players through structured programs,
+                transparent governance, and international collaboration. We manage all national teams,
+                including the Leone Stars, and oversee the organization and running of the
+                Sierra Leone Premier League and other domestic cup competitions.
+                We are committed to fair play, inclusivity, and achieving global success.
+            </p>
+            <p style="margin-top: 15px;">
+                **Mission Statement:** To Govern, Develop, and Promote Football for all citizens of Sierra Leone.
+            </p>
+        </div>
+
+
+        <div class="news-feed">
+            <h3>LATEST NEWS</h3>
+
+            <div class="news-item">
+                <div class="news-text">SLFA Opens New Youth Academy</div>
+                <div class="news-thumb">
+                    <img src="slfa-new-logo-3.png" alt="Youth Academy">
+                </div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-text">Leone Stars Road to AFCON Continues</div>
+                <div class="news-thumb">
+                    <img src="slfa-new-logo-3.png" alt="AFCON Road">
+                </div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-text">Premier League Kick-off Week Results</div>
+                <div class="news-thumb">
+                    <img src="slfa-new-logo-3.png" alt="Premier League Kickoff">
+                </div>
+            </div>
+
+            <div class="news-item">
+                <div class="news-text">Club Licensing Training Completed Successfully</div>
+                <div class="news-thumb">
+                    <img src="slfa-new-logo-3.png" alt="Club Licensing">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="highlights" id="highlights">
+        <h2>RECENT MATCH HIGHLIGHTS</h2>
+
+        <div class="highlight-container">
+            <div class="highlight-item">
+                <video controls>
+                    <source src="WhatsApp Video 2025-11-27 at 7.11.17 AM.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="highlight-item">
+                <video controls>
+                    <source src="videos/highlight2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="highlight-item">
+                <video controls>
+                    <source src="videos/highlight3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="highlight-item">
+                <video controls>
+                    <source src="videos/highlight4.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="highlight-item">
+                <video controls>
+                    <source src="videos/highlight4.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="highlight-item">
+                <video controls>
+                    <source src="videos/highlight4.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-grid">
+        
+        <div class="footer-col">
+            <div class="footer-brand">
+                <img src="slfa-new-logo-3.png" alt="SLFA logo" />
+                <div>
+                    <h3>Sierra Leone FA</h3>
+                    <p style="margin-top:6px; font-size:13px; max-width:240px;">
+                        Promoting and supporting football across Sierra Leone — development, leagues, and national teams.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="index.htm">Home</a></li>
+                <li><a href="players.htm">Players</a></li>
+                <li><a href="services.htm">Services</a></li>
+                <li><a href="news.htm">News</a></li>
+                <li><a href="contact.htm">Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>National Stadium, Freetown</p>
+            <p>Phone: +232 76 123 456</p>
+            <p>Email: <a href="mailto:info@slfa.org">info@slfa.org</a></p>
+
+            <div style="margin-top:8px;">
+                <h4 style="margin-bottom:8px;">Follow Us</h4>
+                <div class="socials">
+                    
+                    <a href="#" aria-label="Facebook">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.1 5.66 21.19 10.44 21.95v-6.99H7.9v-2.87h2.54V9.41c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.44h-1.25c-1.24 0-1.62.77-1.62 1.56v1.88h2.77l-.44 2.87h-2.33v6.99C18.34 21.19 22 17.1 22 12.07z"/>
+                        </svg>
+                    </a>
+
+                    <a href="#" aria-label="Twitter">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.46 6c-.77.35-1.6.58-2.46.69.89-.53 1.57-1.37 1.89-2.37-.84.5-1.77.86-2.76 1.06C18.14 4.5 17 4 15.76 4c-2.17 0-3.93 1.76-3.93 3.93 0 .31.03.62.1.91C8.41 8.7 5.28 6.95 3.1 4.48c-.34.58-.54 1.26-.54 1.99 0 1.38.7 2.59 1.77 3.3-.65-.02-1.26-.2-1.79-.5v.05c0 1.92 1.37 3.52 3.18 3.88-.33.09-.68.14-1.04.14-.25 0-.48-.02-.71-.07.49 1.53 1.92 2.64 3.61 2.67C7.2 17.6 5.05 18.4 2.7 18.04c2.01 1.29 4.4 2.05 6.97 2.05 8.36 0 12.93-6.92 12.93-12.93 0-.2 0-.39-.02-.58A9.2 9.2 0 0 0 22.46 6z"/>
+                        </svg>
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm5 5.9A4.1 4.1 0 1 1 7.9 12 4.1 4.1 0 0 1 12 7.9zm6.5-.4a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1zM12 9.5A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5z"/>
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © <span id="year"></span> Sierra Leone Football Association. All rights reserved.
+    </div>
+</footer>
+
+<script>
+    // set the copyright year dynamically
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
